@@ -1,6 +1,7 @@
 step 1: open eclipse jee application
 step 2: add sqljdbc4-2.jar file(web inf - lib folder , project name --> right click --> properties -->java build path --> libray--> add exteranl jar-->
 import export wizard --> tick sqljdbc4-2.jar
+step 3: create folder to webcontent(ex:jspfile) --> create jsp file --> type the following code + run.
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
