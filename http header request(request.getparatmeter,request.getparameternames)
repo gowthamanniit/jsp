@@ -1,0 +1,61 @@
+pgm1 html file
+==============
+  <html>
+   <body>
+      
+      <form action = " /DataBaseCon/jspfile/NewFile1.jsp" method = "POST">
+         First Name: <input type = "text" name = "first_name">
+         <br />
+         Last Name: <input type = "text" name = "last_name" />
+         Enter address: <textarea rows='6' cols="25" name="adddress"></textarea>
+         
+         <input type="checkbox" name="c_course" checked>
+         <input type = "submit" value = "Submit" />
+      </form>
+      
+   </body>
+</html>
+pgm2 jsp file(NewFile1.jsp)
+==========================
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import = "java.io.*,java.util.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+      <h1>Using POST Method to Read Form Data</h1>
+      
+      <ul>
+         <li><p><b>First Name:</b>
+            <%= request.getParameter("first_name")%>
+         </p></li>
+         <li><p><b>Last  N ame:</b>
+            <%= request.getParameter("last_name")%>
+            <%= request.getHeader("last_name") %>
+         </p></li>
+      </ul>
+      
+      
+       <h2>HTTP Header Request Example</h2>
+         <table width = "100%" border = "1" align = "center">
+            <tr bgcolor = "#949494">
+               <th>Param Name</th>
+               <th>Param Value(s)</th>
+            </tr>
+            <%
+               Enumeration paramNames = request.getParameterNames();
+               while(paramNames.hasMoreElements()) {
+                  String paramName = (String)paramNames.nextElement();
+                  out.print("<tr><td>" + paramName + "</td>\n");
+                  String paramValue = request.getParameter(paramName);
+                  out.println("<td> " + paramValue + "</td></tr>\n");
+               }
+            %>
+         </table>
+</body>
+</html>
