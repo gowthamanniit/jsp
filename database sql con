@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*;" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+ try
+ {
+ Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+ out.println("driver success");
+ Connection con=DriverManager.getConnection("jdbc:sqlserver://localhost\\sqlexpress;databaseName=stu_info","sa","12345");
+ out.println("connection success");
+ Statement st=con.createStatement();
+ ResultSet rs=st.executeQuery("select * from stu_details");
+ /*
+ while(rs.next())
+ {
+  out.println(rs.getString("rno")+"  "+rs.getString("sname")+" "+rs.getString("dob")+rs.getString("mark")+"<br>");
+ }
+ 
+ int noofcol=rs.getMetaData().getColumnCount();
+ out.println("no. of columns :"+noofcol);
+ 
+ String c1=rs.getMetaData().getColumnName(1);
+ out.println("First column " +c1);
+ String c2=rs.getMetaData().getColumnName(2);
+ out.println("First column " +c2);
+ String c3=rs.getMetaData().getColumnName(3);
+ out.println("First column " +c3);
+ String c4=rs.getMetaData().getColumnName(4);
+ out.println("First column " +c4);
+ */
+ 
+ int noofcol=rs.getMetaData().getColumnCount();
+ 
+  int j=1;
+ while(rs.next())
+ {
+ for(int i=1;i<=noofcol;i++)
+ {
+ out.println("<br>  "+rs.getMetaData().getColumnName(i)+"  ");
+ out.println("<br>  "+rs.getString(rs.getMetaData().getColumnName(i)));
+ }
+ }
+ 
+ 
+ rs.close();
+ st.close();
+ con.close();
+ }
+ catch(Exception e)
+ {
+ out.println(" error  : "+e.toString());
+ }
+%>
+</body>
+</html>
