@@ -1,0 +1,65 @@
+<%--
+
+SESSION MANAGEMENT USING COOKIE
+
+ To create a cookie
+
+def: - cookie is a small text file
+     - cookie is a form of name,value pair
+     - cookies are created by server and send to the client with the 'HTTP response headers'.
+     - client saves cookies on the local hard disk and sends them along with the 'HTTP request headers' to the server
+     
+     - servlet API provides Cookie (class ) - javax.servlet.http - package to implement session management using cookie.
+     
+Cookie class methods:
+
+	String getName()                 - it is used to retrieve name of a cookie.
+	void setValue(String value)      -  assign a string value to a cookie
+	String getValue()                -  retrieve string value from cookie
+	void setComment(String describe) - add comment that describes the function of a cookie
+	String getComment()              - it is used to retrieve comment from a cookie
+	setMaxAge(int age)				 - to set time duration for client machine cookie.
+								     - the time duration is specified in seconds
+								  	 - if the time duration is specified as a negative number, the cookie is deleted as soon as the user
+								  	   close the web browser.
+								  	 - if the time duration is specified as a zero number, the cookie get deleted as soon as it is created.
+	int getMaxAge()                  - it is used to retrieve the time duration for which a cookie can exist on the client machine.
+	
+	 
+								  	   
+	syntax: To create a cookie
+	
+		Cookie c1=new Cookie("gowthaman","37");
+	
+	meaning: (stored to server)
+	============================
+	c1 = cookie object	
+	cookie name = gowthaman
+	cookie value = 37
+	
+	after creating cookie send to the client:
+	==========================================
+	
+	addCookie(Cookie  Cookiename)
+	response.addCookie(c1)
+		    
+	client request the cookie details from server
+    =============================================
+    
+      request.getCookies() --> it will return array (cookie objects array - HTTPServletRequest).
+      
+      ex:
+      
+      Cookie cook[]=req.getCookies();
+      
+      length of cookie = cook.length
+      cook[0].getName()
+      cook[0].getValue()
+      cook[0].setValue("")
+      cook[0].setMaxAge(4)
+      res.addCookie(cook[0])
+       
+     - 
+      
+     
+ --%>
